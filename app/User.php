@@ -52,4 +52,21 @@ class User extends Authenticatable
         return $this->belongsToMany(User::class, 'followers', 'follower_id', 'user_id');
     }
 
+    /**
+     * Helper methods
+     */
+
+    public function hasProfilePicture(): bool {
+        return !is_null($this->profile_picture) 
+        && !empty($this->profile_picture);
+    }
+
+    /**
+     * Accessors and Mutators
+     */
+
+     public function getProfilePictureAttribute() {
+        return url('profile_pictures/' . $this->profile_picture);
+     }
+
 }
