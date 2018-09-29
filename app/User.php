@@ -66,7 +66,7 @@ class User extends Authenticatable
      */
 
      public function getProfilePictureAttribute() {
-        return url('profile_pictures/' . $this->profile_picture);
+        return url('profile_pictures/' . $this->attributes['profile_picture']);
      }
 
 }
