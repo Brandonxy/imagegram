@@ -14,7 +14,7 @@
                         </div>
                     @endif
 
-                    You are logged in!
+                    timeline de imagegram
                 </div>
             </div>
         </div>
