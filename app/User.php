@@ -57,8 +57,8 @@ class User extends Authenticatable
      */
 
     public function hasProfilePicture(): bool {
-        return !is_null($this->profile_picture) 
-        && !empty($this->profile_picture);
+        return !is_null($this->attributes['profile_picture']) 
+        && !empty($this->attributes['profile_picture']);
     }
 
     /**
