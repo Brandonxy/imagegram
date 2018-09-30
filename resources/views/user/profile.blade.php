@@ -7,7 +7,36 @@
 
             <div class="panel panel-default">
                 <div class="panel-body">
-                    
+
+                    <div class="col-md-12  col-xs-12">
+                        <div class="row">
+
+                            <div class="col-md-3">
+
+                                @if (Auth::user()->hasProfilePicture())
+                                    <img src="{{ Auth::user()->profile_picture }}" class="img-thumbnail" />
+                                @else
+                                    <img src="https://via.placeholder.com/150x150" alt="No profile picture" />
+                                @endif
+                            </div>                            
+                            
+                            <div class="col-md-7">
+                                <h1>
+                                {{ Auth::user()->name }}
+                                </h1>
+
+                                <strong>
+                                    Seguidores {{ Auth::user()->followers->count() }}
+                                    Siguiendo {{ Auth::user()->following->count() }}
+                                </strong>
+                                <br>
+
+                                <span>
+                                    {{ Auth::user()->bio }}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -22,27 +51,6 @@
                         </div>
                     @endif
 
-                    <div class="row">
-                        <div class="col-md-4">
-                            <h2>Usuario: {{ Auth::user()->name }}</h2>
-                        </div>
-                        <div class="col-md-3">
-                            <h2>Seguidores de {{ Auth::user()->name }}:</h2>
-                            <ul>
-                                @foreach (Auth::user()->followers as $follower)
-                                    <li>{{ $follower->name }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                        <div class="col-md-3">
-                            <h2>Siguiendo a: </h2>
-                            <ul>
-                                @foreach (Auth::user()->following as $user)
-                                    <li>{{ $user->name }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
