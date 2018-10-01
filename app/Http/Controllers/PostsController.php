@@ -46,14 +46,8 @@ class PostsController extends Controller
      */
     public function show(Photo $photo)
     {
-        return $this->showOne($photo);
+        //
     }
-
-	public function showOne($instance) {
-
-		return $instance;
-		return response()->json(['data' => $instance]);
-	}
 
     /**
      * Show the form for editing the specified resource.
