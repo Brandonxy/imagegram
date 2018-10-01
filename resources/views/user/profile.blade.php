@@ -18,6 +18,20 @@
                                 @else
                                     <img src="https://via.placeholder.com/150x150" alt="No profile picture" />
                                 @endif
+
+                                <form action="{{ route('profile.update.picture') }}" method="POST" enctype="multipart/form-data">
+                                    {{ csrf_field() }}
+                                    <div style="overflow-x: hidden;border: 1px solid #f1f1f1; margin: 5px 0px 3px 0px;">
+                                        <input type="file" name="profile-picture" class="btn btn-xs">
+                                    </div>
+                                    <button type="submit" class="btn btn-primary btn-xs">Actualizar</button>
+                                    
+                                    @if ($errors->has('profile-picture'))
+                                        <div class="alert alert-danger">
+                                            {{$errors->first('profile-picture') }}
+                                        </div>
+                                    @endif
+                                </form>
                             </div>                            
                             
                             <div class="col-md-7">
