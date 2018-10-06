@@ -1,14 +1,10 @@
 <?php
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Route::resource('posts', 'PostsController', ['except' => ['create', 'edit']]);
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', 'HomeController@index')->name('home');
 
 /**
  * Rutas relacionadas al perfil de usuario
