@@ -35,10 +35,11 @@
                             </div>                            
                             
                             <div class="col-md-7">
-                                <h1>
-                                {{ Auth::user()->name }}
-                                </h1>
-
+                                <p>
+                                    <h1>{{ Auth::user()->name }} <small>{{ Auth::user()->username }}</small></h1>
+                                    <a href="{{ route('profile.edit') }}" class="btn btn-primary">Editar perfil</a>
+                                </p>
+                                
                                 <strong>
                                     Seguidores {{ Auth::user()->followers->count() }}
                                     Siguiendo {{ Auth::user()->following->count() }}
