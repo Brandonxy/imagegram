@@ -3,10 +3,24 @@
 namespace App\Http\Controllers;
 
 use App\Photo;
+
+// request
 use Illuminate\Http\Request;
+use App\Http\Requests\UploadPhoto;
+
+// models
+use App\User;
+use App\Post;
+
+// facades
+use Auth;
+
 
 class PostsController extends Controller
 {
+
+    private $userPhotosFolder = "photos";
+
     /**
      * Display a listing of the resource.
      *
@@ -28,14 +42,27 @@ class PostsController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Subir una nueva foto
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  App\Requests\UploadPhoto $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function uploadPhoto(UploadPhoto $request) 
     {
-        //
+        $file = $request->file('photo');
+        $description = $request->get('description');
+        $filename = str_random(10) . '.' .$file->getClientOriginalExtension();
+        
+        $user = Auth::user();
+        $post = new Post;
+        $file->move($this->userPhotosFolder, $filename);// subimos al servidor
+        
+        $post->user_id = $user->id; // Asociamos el post al usuario actual
+        $post->photo = $filename;
+        $post->description = $description;
+        $post->save();
+        
+        return redirect()->route('home');
     }
 
     /**
