@@ -10,22 +10,24 @@ use App\Http\Requests\UpdateProfilePicture;
 
 // models
 use App\User;
+use App\Post;
 
 // traits
 use Auth;
 
 class ProfileController extends Controller
 {
-
     
     /**
      * La carpeta donde se almacenan las fotos de perfil
      */
     private $profilePicturesFolder = "profile_pictures";
 
-    public function index()
+    public function showProfile(int $id)
     {
-        return view('user.profile');
+        $user = User::find($id);
+
+        return view('user.profile')->with('user', $user);
     }
 
     public function updateProfilePicture(UpdateProfilePicture $request) 
@@ -38,7 +40,7 @@ class ProfileController extends Controller
         $user->profile_picture = $filename; // guardamos el nombre en la bd
         $user->save(); // guardamos los cambios.
 
-        return redirect()->route('profile');
+        return redirect()->route('profile', ['id' => $user->id]);
     }
 
     public function editProfile()

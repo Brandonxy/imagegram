@@ -9,7 +9,8 @@ Route::get('/', 'HomeController@index')->name('home');
 /**
  * Rutas relacionadas al perfil de usuario
  */
-Route::get('/profile', 'ProfileController@index')->name('profile');
+Route::get('/profile/{id}', 'ProfileController@showProfile')->name('profile');
+
 Route::get('edit_profile', 'ProfileController@editProfile')->name('profile.edit');
 Route::post('update_profile', 'ProfileController@updateProfile')->name('profile.update');
 
