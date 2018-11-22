@@ -1,4 +1,4 @@
-# ImageGram - instagram clon for the series of posts at https://medium.com/@brandonn_
+# ImageGram - instagram clon
 
 Usage:
 
